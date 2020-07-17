@@ -1,0 +1,44 @@
+.wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 300px;
+	padding: 15px;
+	margin: 10px;
+	border-radius: 5px;
+	background: #f1f1f1;
+}
+
+.colLeft {
+	width: 50px;
+	box-sizing: border-box;
+}
+
+.imgWrap {
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+img {
+	display: block;
+	margin: 0;
+}
+
+.colRight {
+	width: calc(100% - 60px);
+	padding: 10px;
+	margin-left: 10px;
+	background: #fff;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+h3 {
+	margin: 0;
+	text-align: left;
+}
+
+p {
+	margin: 0;
+	text-align: left;
+}
