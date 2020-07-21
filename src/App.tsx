@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import UserMessage from './components/UserMessage/UserMessage';
 import Todo, {PriorityType, TasksType} from './components/Todo/Todo';
+import Input from './components/Input/Input';
 
 function App() {
 
@@ -39,6 +40,14 @@ function App() {
 		setFilter(value)
 	}
 
+
+	// Task 3: Input State
+	const [inputValue, setInputValue] = useState<string>('')
+
+	function changeInputValue(newValue: string) {
+		setInputValue(newValue)
+	}
+
 	return (
 			<div className="App">
 				<h2>Task 1</h2>
@@ -56,6 +65,20 @@ function App() {
 						filterTasks={changeFilter}
 						removeTask={removeTask}
 				/>
+
+				<br/>
+				<br/>
+				<br/>
+
+				<h2>Task 3</h2>
+				<Input
+						value={inputValue}
+						onChange={changeInputValue}/>
+
+				<br/>
+				<br/>
+				<br/>
+
 			</div>
 	)
 }
