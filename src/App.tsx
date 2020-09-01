@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 import UserMessage from './components/UserMessage/UserMessage';
 import Todo, {PriorityType, TasksType} from './components/Todo/Todo';
-import Input from './components/Input/Input';
+import SayHi from './components/SayHi/SayHi';
+import Input from './components/common/Input/Input';
+import Button from './components/common/Button/Button';
+import Checkbox from './components/common/Checkbox/Checkbox';
 
 function App() {
 
@@ -41,16 +44,20 @@ function App() {
 	}
 
 
-	// Task 3: Input State
+	// Task 3: SayHi State
 	const [inputValue, setInputValue] = useState<string>('')
+	const changeInputValue = (newValue: string) => setInputValue(newValue)
 
-	function changeInputValue(newValue: string) {
-		setInputValue(newValue)
-	}
+	// Task 4: demo state for a standard input
+	const [inputValueTask4, setInputValueTask4] = useState<string>('')
+	const [checked, setChecked] = useState<boolean>(true)
+	const onChangeInputTask4 = (newValue: string) => setInputValueTask4(newValue)
+	const onKeyPressInputTask4 = () => setInputValueTask4('');
+	const onCheckboxChange = (checked: boolean) => setChecked(checked)
 
 	return (
 			<div className="App">
-				<h2>Task 1</h2>
+				<h2>Task 1: Message block</h2>
 				<UserMessage
 						name={'Katia'}
 						message={'How are you?'}/>
@@ -59,7 +66,7 @@ function App() {
 				<br/>
 				<br/>
 
-				<h2>Task 2</h2>
+				<h2>Task 2: Filter an array</h2>
 				<Todo
 						tasks={filteredTasks}
 						filterTasks={changeFilter}
@@ -70,10 +77,16 @@ function App() {
 				<br/>
 				<br/>
 
-				<h2>Task 3</h2>
-				<Input
+				<h2>Task 3: Say Hi</h2>
+				<SayHi
 						value={inputValue}
 						onChange={changeInputValue}/>
+
+				<h2>Task 4: Standard Components</h2>
+
+				<Checkbox checked={checked} onChange={onCheckboxChange}/>
+				<Input value={inputValueTask4} onChange={onChangeInputTask4} onKeyPress={onKeyPressInputTask4} error={true}/>
+				<Button text={'I am a demo btn'} onClick={() => alert('Hello')} style={'danger'}/>
 
 				<br/>
 				<br/>

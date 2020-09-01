@@ -1,0 +1,18 @@
+.button {
+	vertical-align: middle;
+	height: 40px;
+	min-width: 180px;
+	padding: 10px 30px;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 15px;
+	box-sizing: border-box;
+	outline: none;
+	box-shadow: none;
+}
+
+.danger {
+	background: indianred;
+	border-color: indianred;
+	color: white;
+}

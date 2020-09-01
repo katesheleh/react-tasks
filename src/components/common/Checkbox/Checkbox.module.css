@@ -1,0 +1,11 @@
+.input {
+	display: inline-block;
+	min-width: 300px;
+	height: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.input:focus {
+	outline-color: darkgreen;
+}
