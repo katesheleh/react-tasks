@@ -4,6 +4,9 @@ import {restoreState, saveState} from '../../utils/localStorage';
 import Button from '../common/Button/Button';
 import Select, {ValuesType} from '../common/Select/Select';
 import Radio from '../common/Radio/Radio';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../reducers/store';
+import {checkAgeAC, InitialStateType, sortDownNamesAC, sortUpNamesAC} from '../../reducers/homeWorkReducer';
 
 const Junior = () => {
 
@@ -28,6 +31,14 @@ const Junior = () => {
 	const [radioValue, setRadioValue] = useState('')
 	const onRadioChange = (newValue: string) => setRadioValue(newValue)
 
+	// task 8
+	const people = useSelector<AppRootStateType, InitialStateType[]>(state => state.homework)
+	const dispatch = useDispatch()
+
+	const sortUp = () => dispatch(sortUpNamesAC(people))
+	const sortDown = () => dispatch(sortDownNamesAC(people))
+	const checkAge = () => dispatch(checkAgeAC(people))
+
 	return (
 			<div>
 				<h1>Junior</h1>
@@ -47,6 +58,16 @@ const Junior = () => {
 
 				<h3>Radio</h3>
 				<Radio name={'rightChoice'} values={choices} valueSelected={radioValue} onChange={onRadioChange}/>
+
+				<br/>
+				<br/>
+				<br/>
+
+				<h2>Task 8: Reducer - sort up/down, filter</h2>
+				{people.map((p) => <p key={p.id}>{p.name} --- {p.age}</p>)}
+				<Button text={'Names Sort (UP)'} onClick={sortUp}/>
+				<Button text={'Names Sort (DOWN)'} onClick={sortDown}/>
+				<Button text={'Show People 18+'} onClick={checkAge}/>
 			</div>
 	)
 }
