@@ -7,6 +7,7 @@ import Radio from '../common/Radio/Radio';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../reducers/store';
 import {checkAgeAC, InitialStateType, sortDownNamesAC, sortUpNamesAC} from '../../reducers/homeWorkReducer';
+import Timer from '../Timer/Timer';
 
 const Junior = () => {
 
@@ -15,10 +16,9 @@ const Junior = () => {
 	const [value, setValue] = useState(startValue)
 	const onEditableSpanValueChange = (newValue: string) => setValue(newValue)
 	const saveData = () => saveState<StateType>('saveState', {value: value})
-	const restoreData = () => restoreState<StateType>('saveState', {value: startValue})
+	const restoreData = () => setValue(restoreState<StateType>('saveState', {value: startValue}).value)
 
 	// task 7
-
 	const choices: ValuesType[] = [
 		{id: '1', value: 'play-football', label: 'Play Football'},
 		{id: '2', value: 'learn-react', label: 'Learn React'},
@@ -68,6 +68,13 @@ const Junior = () => {
 				<Button text={'Names Sort (UP)'} onClick={sortUp}/>
 				<Button text={'Names Sort (DOWN)'} onClick={sortDown}/>
 				<Button text={'Show People 18+'} onClick={checkAge}/>
+
+				<br/>
+				<br/>
+				<br/>
+
+				<h2>Task 9: Timer</h2>
+				<Timer/>
 			</div>
 	)
 }
