@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Input from '../Input/Input';
 
-const EditableSpan = (props: PropsType) => {
+const EditableSpan = React.memo((props: PropsType) => {
 	const [editMode, setEditMode] = useState(false)
 
-	const onDoubleClick = () => setEditMode(true)
+	const onDoubleClick = useCallback(() => setEditMode(true), [editMode])
 
-	const onBlur = () => {
+	const onBlur = useCallback(() => {
 		props.onChange(props.value)
 		setEditMode(false)
-	}
+	}, [props.value])
 
-	const onKeyPress = () => {
+	const onKeyPress = useCallback(() => {
 		props.onChange(props.value)
 		setEditMode(false)
-	}
+	}, [props.value])
 
 	return (
 			<div>
@@ -31,7 +31,7 @@ const EditableSpan = (props: PropsType) => {
 				}
 			</div>
 	)
-}
+})
 
 export default EditableSpan;
 

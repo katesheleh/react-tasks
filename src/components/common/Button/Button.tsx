@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import styles from './Button.module.css';
 
 
-const Button = (props: ButtonPropsType) => {
-	const onClickHandler = () => {
-		props.onClick()
-	}
+const Button = React.memo((props: ButtonPropsType) => {
+
+	const onClickHandler = useCallback(() => props.onClick(), [])
+
 	return (
 			<button
 					onClick={onClickHandler}
 					className={`${styles.button} ${props.style === 'danger' && styles.danger} ${props.style === 'standard' && styles.standard}`}>
 				{props.text}</button>
 	)
-}
+})
 
 export default Button;
 

@@ -1,22 +1,22 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback} from 'react';
 import styles from './Input.module.css';
 
 
-const Input = (props: InputType) => {
+const Input = React.memo((props: InputType) => {
 
-	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => props.onChange(e.currentTarget.value)
+	const onInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => props.onChange(e.currentTarget.value), [props.value])
 
-	const onKeyInputPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+	const onKeyInputPressHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13) {
 			props.onKeyPress()
 		}
-	}
+	}, [props.onKeyPress])
 
-	const onBlur = () => {
+	const onBlur = useCallback(() => {
 		if (props.onBlur) {
 			props.onBlur()
 		}
-	}
+	}, [props.onBlur])
 
 	return <input
 			type='text'
@@ -26,7 +26,7 @@ const Input = (props: InputType) => {
 			onKeyPress={onKeyInputPressHandler}
 			onBlur={onBlur}
 			className={`${styles.input} ${props.error && styles.error}`}/>
-}
+})
 
 export default Input;
 

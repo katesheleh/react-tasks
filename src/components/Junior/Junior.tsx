@@ -10,6 +10,8 @@ import {checkAgeAC, InitialStateType, sortDownNamesAC, sortUpNamesAC} from '../.
 import Timer from '../Timer/Timer';
 import Preloader from '../common/Preloader/Preloader';
 import {InitReducerStateType, loadingAC} from '../../reducers/initReducer';
+import Range from '../common/Range/Range';
+import RangeDouble from '../common/RangeDouble/RangeDouble';
 
 const Junior = () => {
 
@@ -51,6 +53,15 @@ const Junior = () => {
 		}, 3000)
 	}
 
+	// task 11 (variables and callbacks)
+	const [rangeValue, setRangeValue] = useState(0);
+	const onRangeChange = (newValue: number) => setRangeValue(newValue)
+	const initMin = 0;
+	const initMax = 34;
+	const [rangeDoubleValueMin, setRangeDoubleValueMin] = useState(initMin);
+	const [rangeDoubleValueMax, setRangeDoubleValueMax] = useState(initMax);
+	const onRangeChangeMin = (newValue: number) => setRangeDoubleValueMin(newValue)
+	const onRangeChangeMax = (newValue: number) => setRangeDoubleValueMax(newValue)
 	return (
 			<div>
 				<h1>Junior</h1>
@@ -95,6 +106,23 @@ const Junior = () => {
 				<h2>Task 10: Loading...</h2>
 				{loading.loading && <Preloader/>}
 				<Button text={'Show Preloader'} onClick={setLoading}/>
+
+				<br/>
+				<br/>
+				<br/>
+
+				<h2>Task 11: Range</h2>
+				<h4>Range Simple:</h4>
+				<Range minValue={0} maxValue={20} value={rangeValue} onChange={onRangeChange}/>
+
+				<h4>Range Double:</h4>
+				<RangeDouble
+						minValue={initMin}
+						maxValue={initMax}
+						valueMinActive={rangeDoubleValueMin}
+						onChangeMin={onRangeChangeMin}
+						valueMaxActive={rangeDoubleValueMax}
+						onChangeMax={onRangeChangeMax}/>
 			</div>
 	)
 }

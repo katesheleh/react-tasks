@@ -1,11 +1,8 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 
-const Radio = (props: PropsType) => {
+const Radio = React.memo((props: PropsType) => {
 
-	const onRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-		props.onChange(e.target.value)
-		console.log(e.target.value)
-	}
+	const onRadioChange = useCallback((e: ChangeEvent<HTMLInputElement>) => props.onChange(e.target.value), [props.valueSelected])
 
 	return (
 			<div>
@@ -23,7 +20,7 @@ const Radio = (props: PropsType) => {
 				})}
 			</div>
 	)
-}
+})
 
 export default Radio;
 
