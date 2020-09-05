@@ -8,17 +8,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../reducers/store';
 import {checkAgeAC, InitialStateType, sortDownNamesAC, sortUpNamesAC} from '../../reducers/homeWorkReducer';
 import Timer from '../Timer/Timer';
+import Preloader from '../common/Preloader/Preloader';
+import {InitReducerStateType, loadingAC} from '../../reducers/initReducer';
 
 const Junior = () => {
 
-	// task 6
+	// task 6 (variables and callbacks)
 	const startValue = 'double click';
 	const [value, setValue] = useState(startValue)
 	const onEditableSpanValueChange = (newValue: string) => setValue(newValue)
 	const saveData = () => saveState<StateType>('saveState', {value: value})
 	const restoreData = () => setValue(restoreState<StateType>('saveState', {value: startValue}).value)
 
-	// task 7
+	// task 7 (variables and callbacks)
 	const choices: ValuesType[] = [
 		{id: '1', value: 'play-football', label: 'Play Football'},
 		{id: '2', value: 'learn-react', label: 'Learn React'},
@@ -31,13 +33,23 @@ const Junior = () => {
 	const [radioValue, setRadioValue] = useState('')
 	const onRadioChange = (newValue: string) => setRadioValue(newValue)
 
-	// task 8
+	// task 8 (variables and callbacks)
 	const people = useSelector<AppRootStateType, InitialStateType[]>(state => state.homework)
 	const dispatch = useDispatch()
 
 	const sortUp = () => dispatch(sortUpNamesAC(people))
 	const sortDown = () => dispatch(sortDownNamesAC(people))
 	const checkAge = () => dispatch(checkAgeAC(people))
+
+	// task 10 (variables and callbacks)
+	const loading = useSelector<AppRootStateType, InitReducerStateType>(state => state.init)
+
+	const setLoading = () => {
+		dispatch(loadingAC(true))
+		setTimeout(() => {
+			dispatch(loadingAC(false))
+		}, 3000)
+	}
 
 	return (
 			<div>
@@ -75,6 +87,14 @@ const Junior = () => {
 
 				<h2>Task 9: Timer</h2>
 				<Timer/>
+
+				<br/>
+				<br/>
+				<br/>
+
+				<h2>Task 10: Loading...</h2>
+				{loading.loading && <Preloader/>}
+				<Button text={'Show Preloader'} onClick={setLoading}/>
 			</div>
 	)
 }
