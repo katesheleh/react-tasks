@@ -14,6 +14,7 @@ const JuniorAdvanced = (props: JuniorAdvancedType) => {
 	return (
 			<div>
 				<h1>Junior + </h1>
+				<br/>
 				<h2>Task 12: Theme Switcher</h2>
 				<Radio name={'colorThemeSwitcher'} values={choices} valueSelected={props.theme} onChange={props.onChange}/>
 			</div>
