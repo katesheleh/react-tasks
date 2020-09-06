@@ -28,12 +28,12 @@ export default Radio;
 type PropsType = {
 	name: string
 	values: ValuesType[]
-	valueSelected: string
-	onChange: (val: string) => void
+	valueSelected: any
+	onChange: (val: any) => void
 }
 
 export type ValuesType = {
 	id: string
-	value: string
+	value: any
 	label: string
 }
