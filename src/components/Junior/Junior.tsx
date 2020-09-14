@@ -6,7 +6,13 @@ import Select, {ValuesType} from '../common/Select/Select';
 import Radio from '../common/Radio/Radio';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../reducers/store';
-import {checkAgeAC, InitialStateType, sortDownNamesAC, sortUpNamesAC} from '../../reducers/homeWorkReducer';
+import {
+	checkAgeAC,
+	InitialStateType,
+	sortDownNamesAC,
+	sortDataAC,
+	sortUpNamesAC
+} from '../../reducers/homeWorkReducer';
 import Timer from '../Timer/Timer';
 import Preloader from '../common/Preloader/Preloader';
 import {InitReducerStateType, loadingAC} from '../../reducers/initReducer';
@@ -39,8 +45,8 @@ const Junior = () => {
 	const people = useSelector<AppRootStateType, InitialStateType[]>(state => state.homework)
 	const dispatch = useDispatch()
 
-	const sortUp = () => dispatch(sortUpNamesAC(people))
-	const sortDown = () => dispatch(sortDownNamesAC(people))
+	const sortUp = () => dispatch(sortDataAC(people, 'up'))
+	const sortDown = () => dispatch(sortDataAC(people, 'down'))
 	const checkAge = () => dispatch(checkAgeAC(people))
 
 	// task 10 (variables and callbacks)
