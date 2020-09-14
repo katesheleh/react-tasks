@@ -9,7 +9,7 @@ const Button = React.memo((props: ButtonPropsType) => {
 	return (
 			<button
 					onClick={onClickHandler}
-					className={`${styles.button} ${props.style === 'danger' && styles.danger} ${props.style === 'standard' && styles.standard}`}>
+					className={`${styles.button} ${props.style ? styles[props.style] : ''} `}>
 				{props.text}</button>
 	)
 })
